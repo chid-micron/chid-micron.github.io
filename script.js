@@ -4,6 +4,19 @@ const MODEL = "gemini-3-flash-preview";
 
 // 2. MAIN QUERY FUNCTION
 async function startQuery() {
+
+    // Remove the hardcoded key. 
+// We will retrieve it from the user's browser storage.
+let KEY = localStorage.getItem('GEMINI_KEY');
+
+if (!KEY) {
+    KEY = prompt("Please enter your Gemini API Key:");
+    if (KEY) {
+        localStorage.setItem('GEMINI_KEY', KEY);
+    }
+}
+
+// Rest of your startQuery() function remains the same...
     const input = document.getElementById('userInput');
     const btn = document.getElementById('btn');
     const text = input.value.trim();
@@ -50,4 +63,5 @@ function addMsg(msg, type) {
     div.innerText = msg;
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
+
 }
